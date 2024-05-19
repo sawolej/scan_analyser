@@ -13,16 +13,16 @@ class ImageDisplayApp(QWidget):
         self.click_history = []
 
     def initUI(self):
-        self.loadButton = QPushButton('Wczytaj plik CSV', self)
+        self.loadButton = QPushButton('CSV', self)
         self.loadButton.clicked.connect(self.openFileNameDialog)
 
-        self.iButton = QRadioButton("Użyj i")
-        self.jButton = QRadioButton("Użyj j")
+        self.iButton = QRadioButton("Phase")
+        self.jButton = QRadioButton("Magnitude")
         self.iButton.setChecked(True)
 
         self.imageLabel = QLabel(self)
         self.imageLabel.mousePressEvent = self.mousePressEvent
-        self.imageLabel.mouseMoveEvent = self.mouseMoveEvent  # Updated to show coordinates on move
+        self.imageLabel.mouseMoveEvent = self.mouseMoveEvent 
         self.imageLabel.mouseReleaseEvent = self.mouseReleaseEvent
 
         self.selectionLabel = QLabel(self)
@@ -39,10 +39,10 @@ class ImageDisplayApp(QWidget):
         self.dataArea = QScrollArea()
         self.dataArea.setWidget(self.dataLabel)
 
-        self.coordLabel = QLabel(self)  # Label to show coordinates
+        self.coordLabel = QLabel(self)
         self.coordLabel.setText("Coordinates: (x, y), Value: value")
 
-        self.label = QLabel('Wybierz plik, aby wyświetlić dane jako obraz.', self)
+        self.label = QLabel('choose file', self)
         self.vbox = QVBoxLayout(self)
         self.hbox = QHBoxLayout()
         self.imageLayout = QHBoxLayout()
@@ -53,13 +53,13 @@ class ImageDisplayApp(QWidget):
         self.vbox.addLayout(self.hbox)
         self.vbox.addWidget(self.label)
         self.vbox.addWidget(self.scrollArea)
-        self.vbox.addWidget(self.coordLabel)  # Add coordLabel below the scroll area
+        self.vbox.addWidget(self.coordLabel) 
         self.imageLayout.addWidget(self.selectionArea)
         self.imageLayout.addWidget(self.dataArea)
         self.vbox.addLayout(self.imageLayout)
 
         self.setLayout(self.vbox)
-        self.setWindowTitle('Wyświetlacz danych CSV jako obraz')
+        self.setWindowTitle('obrasek')
         self.setGeometry(300, 300, 1500, 600)
 
         self.originQPoint = None
